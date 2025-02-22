@@ -9,3 +9,6 @@ uuid==1.30
 Werkzeug==3.0.1
 accelerate==0.24.1
 huggingface_hub==0.20.2
+openai==1.12.0
+python-dateutil==2.8.2
+regex==2023.12.25

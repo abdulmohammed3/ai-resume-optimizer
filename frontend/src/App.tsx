@@ -31,10 +31,15 @@ function App() {
     try {
       const formData = new FormData();
       formData.append('resume', resume.file);
-      formData.append('job_description', jobDescription);
+      formData.append('job_description', JSON.stringify({
+        job_description: jobDescription
+      }));
 
       const response = await fetch('http://localhost:5000/optimize-resume', {
         method: 'POST',
+        headers: {
+          'Accept': 'application/json'
+        },
         body: formData,
       });
 
@@ -114,7 +119,7 @@ function App() {
                   Optimized Resume
                 </h2>
                 <div className="bg-gray-50 p-4 rounded-md">
-                  <pre className="whitespace-pre-wrap font-mono text-sm">
+                  <pre className="whitespace-pre-wrap font-mono text-sm bg-white p-4 rounded-md shadow-sm">
                     {resume.optimizedContent}
                   </pre>
                 </div>
