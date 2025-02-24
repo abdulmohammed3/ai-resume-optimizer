@@ -84,7 +84,7 @@ curl -X POST -F "resume=@your_resume.docx" -F "job_description=Your job descript
 ### Q1 2025
 - [x] Core resume optimization functionality
 - [x] Section classification implementation
-- [ ] Basic web interface prototype
+- [X] Basic web interface prototype
 
 ### Q2 2025
 - [ ] Multi-language support
