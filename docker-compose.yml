@@ -1,0 +1,46 @@
+services:
+  flask-backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - type: volume
+        source: backend_source
+        target: /app
+    environment:
+      - FLASK_ENV=development
+    networks:
+      - app-network
+
+  nextjs-frontend:
+    build:
+      context: ./frontend-reswave
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - type: volume
+        source: frontend_source
+        target: /app
+      - type: volume
+        target: /app/node_modules
+      - type: volume
+        target: /app/.next
+    environment:
+      - NEXT_PUBLIC_API_URL=http://flask-backend:5000
+    depends_on:
+      - flask-backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  node_modules:
+  next_build:
+  frontend_source:
+  frontend_source:
